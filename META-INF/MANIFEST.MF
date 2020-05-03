@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SpringFrontEndd
+Bundle-SymbolicName: SpringFrontEndd
+Bundle-Version: 1.0.0.qualifier
+Export-Package: com.niit.Controller,
+ com.niit.config
