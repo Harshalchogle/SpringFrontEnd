@@ -31,18 +31,18 @@ public class AppContext extends WebMvcConfigurerAdapter
 //        registry.addViewController("/loginpage").setViewName("loginpage");
 //        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
 //    }
-//	
-//	 @Bean(name="multipartResolver") 
-//	    public CommonsMultipartResolver getResolver() {
-//	        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-//	         
-//	        //Set the maximum allowed size (in bytes) for each individual file.
-//	        resolver.setMaxUploadSizePerFile(5242880);//5MB
-//	         
-//	        //You may also set other available properties.
-//	         
-//	        return resolver;
-//	    }
+	
+	 @Bean(name="multipartResolver") 
+	    public CommonsMultipartResolver getResolver() {
+	        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+	         
+	        //Set the maximum allowed size (in bytes) for each individual file.
+	        resolver.setMaxUploadSizePerFile(5242880);//5MB
+	         
+	        //You may also set other available properties.
+	         
+	        return resolver;
+	    }
 	 
 	@Bean
 	public ViewResolver viewResolver()
@@ -53,10 +53,10 @@ public class AppContext extends WebMvcConfigurerAdapter
 		return resolver;
 	}
 	
-//	   public void addResourceHandlers(ResourceHandlerRegistry registry) 
-//	   {
-//	       registry.addResourceHandler("/images/**") 
-//	                 .addResourceLocations("/WEB-INF/images/");
+	   public void addResourceHandlers(ResourceHandlerRegistry registry) 
+	   {
+	       registry.addResourceHandler("/images/**") 
+	                 .addResourceLocations("/WEB-INF/images/");
 //	       registry.addResourceHandler("/css/**") 
 //           			.addResourceLocations("/WEB-INF/css/");
 ////	       registry.addResourceHandler("/engine1/**") 
@@ -65,7 +65,7 @@ public class AppContext extends WebMvcConfigurerAdapter
 ////					.addResourceLocations("/WEB-INF/resources/tooltips/");
 //	     
 //	       
-//	   }
+	   }
 }
 //	 
 	   

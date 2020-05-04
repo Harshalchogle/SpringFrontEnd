@@ -45,9 +45,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //	  .antMatchers("/cart/display/**").authenticated()
 //	  .antMatchers("/cart/add/**").authenticated()
 //	  .antMatchers("/order/**").authenticated()
-      .antMatchers("/book/add/**").hasAuthority("admin")
-      .antMatchers("/book/delete/**").hasAuthority("admin")
-      .antMatchers("/book/edit/**").hasAuthority("admin")
+      .antMatchers("/products/add/**").hasAuthority("admin")
+      .antMatchers("/products/delete/**").hasAuthority("admin")
+      .antMatchers("/products/edit/**").hasAuthority("admin")
       .and().formLogin()
       
       .defaultSuccessUrl("/")
