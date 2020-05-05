@@ -20,6 +20,13 @@
   </properties>
 
   <dependencies>
+  <!-- https://mvnrepository.com/artifact/com.instamojo/instamojo-java -->
+	<dependency>
+	    <groupId>com.instamojo</groupId>
+	    <artifactId>instamojo-java</artifactId>
+	    <version>2.0.2</version>
+	</dependency>
+  
   <dependency>
   <groupId>com.niit.demo</groupId>
   <artifactId>HibernateBackEnd</artifactId>

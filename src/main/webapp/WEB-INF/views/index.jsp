@@ -21,7 +21,8 @@
 <td>${product.quantity}</td>
 <td><img src='<sf:url value="/images/${product.productname}/${product.productimage}"></sf:url>' height="5%" width="5%"></td>
 <td><a href="${pageContext.request.contextPath}/products/edit?productid=${product.productid}" class="btn btn-primary">Edit</a>|
-<a href="${pageContext.request.contextPath}/products/delete?productid=${product.productid}" class="btn btn-danger">Delete</a>
+<a href="${pageContext.request.contextPath}/products/delete?productid=${product.productid}" class="btn btn-danger">Delete</a>|
+<a href="${pageContext.request.contextPath}/products/buy?productid=${product.productid}" class="btn btn-warning">Buy Now</a>
 </td>
 </tr>
 </c:forEach>

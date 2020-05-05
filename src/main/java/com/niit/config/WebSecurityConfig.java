@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //	  .antMatchers("/resources/**").permitAll()
 //	  .antMatchers("/cart/display/**").authenticated()
 //	  .antMatchers("/cart/add/**").authenticated()
-//	  .antMatchers("/order/**").authenticated()
+	  .antMatchers("/products/buy/**").authenticated()
       .antMatchers("/products/add/**").hasAuthority("admin")
       .antMatchers("/products/delete/**").hasAuthority("admin")
       .antMatchers("/products/edit/**").hasAuthority("admin")
