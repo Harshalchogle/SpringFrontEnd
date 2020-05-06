@@ -50,7 +50,7 @@ public class ProductController
 		return "AddProduct";
 	}
 	@PostMapping("/add")
-	public String addProductcmplt(@ModelAttribute("products")Products products,@RequestParam("productPhoto")MultipartFile productPhoto)
+	public String addProductcmplt(@ModelAttribute("products")Products products,@RequestParam("productPhoto")MultipartFile productPhoto,ModelMap map)
 	{
 		productDAO.addProduct(products);
 		String path="E:\\Demo\\SpringFrontEndd\\src\\main\\webapp\\WEB-INF\\images\\";
@@ -88,7 +88,10 @@ List<String> files=displayImage(products.getProductname());
 				System.out.println(e);
 			}
 		}
-		return "redirect:/";
+		map.addAttribute("msg", "Product Added successfully");
+		map.addAttribute("pagename","/home");
+		map.addAttribute("type", "success");
+		return "popup";
 	}
 	
 	public List<String> displayImage(String productname)
@@ -125,7 +128,7 @@ List<String> files=displayImage(products.getProductname());
 		return "AddProduct";
 	}
 	@PostMapping("/update")
-	public String updateProducts(@ModelAttribute("p")Products products,@RequestParam("productPhoto")MultipartFile productphoto)
+	public String updateProducts(ModelMap map,@ModelAttribute("p")Products products,@RequestParam("productPhoto")MultipartFile productphoto)
 	{
 		productDAO.updateProduct(products);
 		String path="E:\\Demo\\SpringFrontEndd\\src\\main\\webapp\\WEB-INF\\images\\";
@@ -163,13 +166,20 @@ List<String> files=displayImage(products.getProductname());
 				System.out.println(e);
 			}
 		}
-		return "redirect:/";
+		map.addAttribute("msg", "Product Updated successfully");
+		map.addAttribute("pagename","/home");
+		map.addAttribute("type", "success");
+		return "popup";
 	}
 	@RequestMapping("/delete")
-	public String deleteProduct(@RequestParam("productid")int productid)
+	public String deleteProduct(ModelMap map,@RequestParam("productid")int productid)
 	{
 		productDAO.deleteProduct(productid);
-		return "redirect:/";
+		map.addAttribute("msg", "Product deleted successfully");
+		map.addAttribute("pagename","/home");
+		map.addAttribute("type", "success");
+		return "popup";
+		
 	}
 	@RequestMapping("/buy")
 	public void buyProduct(@RequestParam("productid")int productid,HttpServletResponse resp)

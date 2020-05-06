@@ -27,15 +27,9 @@
       </li>
       <sec:authorize access="hasAuthority('admin') and isAuthenticated()">
       <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/books/add">Add Book</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="${pageContext.request.contextPath}/products/add">Add Products</a>
       </li>
       </sec:authorize>
-      <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/products/display">Products</a>
-      </li>
       <sec:authorize access="!isAuthenticated()">
       <li class="nav-item">
         <a class="nav-link" href="${pageContext.request.contextPath}/users/register">Register</a>

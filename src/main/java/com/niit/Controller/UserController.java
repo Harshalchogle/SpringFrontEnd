@@ -48,7 +48,10 @@ public class UserController
 		if(userotp==otp)
 		{
 			userDAO.updateUser(user);
-			return "redirect:/";
+			map.addAttribute("msg", "Registered suceessfully");
+			map.addAttribute("pagename","/users/login");
+			map.addAttribute("type", "success");
+			return "popup";
 		}
 		else
 		{
@@ -96,14 +99,17 @@ public class UserController
 		}
 	}
 	@PostMapping("/confirmPassword")
-	public String confirmPassword(@RequestParam("pass")String pass,@RequestParam("cpass")String cpass)
+	public String confirmPassword(@RequestParam("pass")String pass,@RequestParam("cpass")String cpass,ModelMap map)
 	{
 		if(pass.equals(cpass))
 		{
 			pass=new BCryptPasswordEncoder().encode(pass);
 			user.setPassword(pass);
 			userDAO.updateUser(user);
-			return "redirect:/users/login";
+			map.addAttribute("msg", "Password updated suceessfully");
+			map.addAttribute("pagename","/users/login");
+			map.addAttribute("type", "success");
+			return "popup";
 		}
 		else
 		{
