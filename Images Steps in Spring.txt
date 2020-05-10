@@ -1,0 +1,99 @@
+************Image adding steps in Spring.**************
+1)In the successful adding of book or product you have to add the following code.
+	String path="E:\\Demo\\SpringFrontEndd\\src\\main\\webapp\\WEB-INF\\images\\";//add the path where you want to save yor images.
+		Path p=Paths.get(path+products.getProductname());
+		if (!Files.exists(p))
+		{    
+			try
+			{
+				Files.createDirectory(p);
+				System.out.println("Directory created");
+			}
+			catch (Exception e) 
+			{
+				System.out.println(e);
+			}
+        }
+List<String> files=displayImage(products.getProductname());	//get productname or bookname.
+		path=String.valueOf(p.toString()+"\\"+(files.size()+1)+".jpg");
+		System.out.println(path);
+		File imageFile=new File(path);
+		
+		if(!productPhoto.isEmpty())
+		{
+			try
+			{
+				byte buffer[]=productPhoto.getBytes();
+				FileOutputStream fos=new FileOutputStream(imageFile);
+				BufferedOutputStream bos=new BufferedOutputStream(fos);
+				bos.write(buffer);
+				bos.close();
+			}
+			catch (Exception e) 
+			{
+				System.out.println(e);
+			}
+		}
+		map.addAttribute("msg", "Product Added successfully");
+		map.addAttribute("pagename","/home");
+		map.addAttribute("type", "success");
+		return "popup";
+	}
+	
+	public List<String> displayImage(String productname)
+	{
+		List<String> images=new ArrayList();
+		try
+		{
+			String path="E:\\Demo\\SpringFrontEndd\\src\\main\\webapp\\WEB-INF\\images\\";
+			Path p=Paths.get(path+productname);
+			DirectoryStream<Path> files=Files.newDirectoryStream(p,"*.*");
+			
+			for(Path file:files)
+			{
+//				FileInputStream fis=new FileInputStream(file.toString());
+//				byte[] arr=new byte[fis.available()];
+//				fis.read(arr);
+				
+				images.add(file.getFileName().toString());
+			}
+		}
+		catch (Exception e) 
+		{
+			System.out.println(e);
+		}
+		return images;
+	}
+	
+2)Add image field in hibernate model and give the datatype as String.
+
+3)Add image field in add product.jsp page 
+	<div class="form-group">
+	<label>Add Product Photo</label>
+	<input type="file" name="productPhoto" accept="imgae/*">
+	</div>
+
+4)Set enctype in spring form because photo is sent in binary format ie in parts.
+	 enctype="multipart/form-data"
+	 
+5)for Displaying the image you have to add the following code in your suitable controller.
+	public String index(ModelMap map)
+	{
+		List<Products> products=new ArrayList<Products>();
+		for (Products p:productDAO.displayAllProducts()) 
+		{
+			List<String> im=displayImage(p.getProductname());
+			if(!im.isEmpty())
+			p.setProductimage(im.get(0));	
+			products.add(p);
+		}
+		map.addAttribute("products",products);
+		return "index";
+	}
+	
+6)after compeleting this you have to add img src in your index.jsp page or any other page that you want to show the images.
+		<img src='<sf:url value="/images/${product.productname}/${product.productimage}"></sf:url>'
+		//sf is just the taglib prefix of spring tags. you can give any name as prefix.
+		
+		
+		
